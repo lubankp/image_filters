@@ -43,16 +43,18 @@ public:
 
 	std::vector <std::array<int,3>> createOperationVec(Picture picture ) {
 		//creates operation veector accourding to choise 
-
+		
 		bool correct_oper = false;
 		std::vector<std::array<int,3>> operation_vec;
 		std::cout << "Wyberz operacje (1-inwersja, 2-biala_ramka, 3-tresholding_kanalu, 0-koniec wprowadzania): \n";
+		std::cin.ignore();
+		
 		while (!correct_oper) {
 
 			int num = 0;
 			
-			std::getline(std::cin, operation_);
 			try {
+				std::getline(std::cin, operation_);
 				int operation_num = std::stoi(operation_);
 				switch (operation_num) {
 					case 1:
@@ -141,11 +143,11 @@ public:
 			try {
 				std::getline(std::cin, horizontal);
 				horizontal_int = std::stoi(horizontal);
-				if ((horizontal_int < picture.getImage()->getSize().x) && (horizontal_int > 0)) {
+				if ((horizontal_int < picture.getImage()->getSize().x / 2) && (horizontal_int > 0)) {
 					correct_value = true;
 				}
 				else {
-					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().x << ") :\n";
+					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().x / 2 << ") :\n";
 				}
 			}
 			catch (std::invalid_argument e) {
@@ -163,11 +165,11 @@ public:
 			try {
 				std::getline(std::cin, vertical);
 				vertical_int = std::stoi(vertical);
-				if ((vertical_int < picture.getImage()->getSize().y) && (vertical_int > 0)) {
+				if ((vertical_int < picture.getImage()->getSize().y / 2) && (vertical_int > 0)) {
 					correct_value1 = true;
 				}
 				else {
-					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().y << ") :\n";
+					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().y / 2 << ") :\n";
 				}
 			}
 			catch (std::invalid_argument e) {

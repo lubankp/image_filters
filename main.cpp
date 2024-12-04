@@ -28,6 +28,6 @@ int main() {
 	execute.execute(finish_vect, picture);
 	
 	picture.writePicture("./obraz4.bmp");
-	//picture.show();
+	picture.show();
 
 }
