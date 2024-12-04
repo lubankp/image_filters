@@ -1,3 +1,4 @@
+//includes libraries
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -5,12 +6,15 @@
 
 
 class Picture {
+//creates picture object and allow to manipulate it
 
+//attributes:
 	sf::Image image_;
 
 public:
 	
 	bool openPicture(std::string fileName) {
+		//loads picture from file
 
 		return	image_.loadFromFile(fileName);
 	}
@@ -21,12 +25,13 @@ public:
 	}
 
 	void writePicture(std::string fileName) {
-
+		//saves image on disc
 		image_.saveToFile(fileName);
 	}
 
 	
 	void show() {
+		//shows picture after modifications
 
 		sf::RenderWindow window(sf::VideoMode(image_.getSize().x, image_.getSize().y), "Picture");
 		sf::Texture texture;
@@ -53,8 +58,6 @@ public:
 	}
 
 	sf::Image* getImage() { return &image_; };
-	
-
-
+	//return attribute
 
 };

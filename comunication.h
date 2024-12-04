@@ -1,4 +1,4 @@
-//#include "yami.h"
+//includes files and libraries
 #include <memory>
 #include "inversion.h"
 #include "treshold.h"
@@ -8,7 +8,7 @@
 
 
 class Comunication {
-
+// allows to comunicate with user by terminal
 
 	std::string imageName_;
 	std::string operation_ = "";
@@ -21,12 +21,15 @@ public:
 
 
 	std::string init() {
+		//starts comunication and return image name
+		
 		std::cout << "Wyberz obraz: \n";
 		std::cin >> imageName_;
 		return imageName_;
 	}
 
 	Picture open(std::string& imageName) {
+		//opens choosen picture
 
 		Picture picture;
 
@@ -39,6 +42,7 @@ public:
 
 
 	std::vector <std::array<int,3>> createOperationVec(Picture picture ) {
+		//creates operation veector accourding to choise 
 
 		bool correct_oper = false;
 		std::vector<std::array<int,3>> operation_vec;
@@ -70,7 +74,6 @@ public:
 					{
 						makeTresholdComunication();
 						std::array<int, 3> tab2= { 3, canal_, value_int_ };
-						std::cout << canal_ << '\n';
 						operation_vec.push_back(tab2);
 						num++;
 						break;
@@ -96,9 +99,10 @@ public:
 	}
 
 	std::vector<std::shared_ptr<Effect>> chooseOperation(std::vector<std::array<int,3>> operation_vec) {
+		//create vector of objects - modifications
 
 		std::vector<std::shared_ptr<Effect>> finish_vec;
-		;
+		
 		for (auto element : operation_vec) {
 			switch (element[0]) {
 				case 1:
@@ -125,11 +129,13 @@ public:
 	}
 
 	void makeFrameComunication(Picture picture) {
+		//takes additional informations for frame operation
 
 		std::cout << "Podaj wartosc horyzontalna ramki: \n";
 		std::string horizontal;
-		bool correct_value = 0;
+		bool correct_value = false;
 
+		//while not correct takes horizontal value
 		while (!correct_value)
 		{
 			try {
@@ -151,6 +157,7 @@ public:
 		std::string vertical;
 		bool correct_value1 = false;
 
+		//while not correct takes vertical value
 		while (!correct_value1)
 		{
 			try {
@@ -170,19 +177,20 @@ public:
 	}
 
 	void makeTresholdComunication() {
+		//takes additional informations for treshold operation
 
 			std::cout << "Podaj kanal (r, g, b): \n";
 			std::string canal_value;
-			std::getline(std::cin, canal_value);
-			
 			bool correct_canal = false;
+
+			//while not correct takes canal value
 			while (!correct_canal) {
+				std::getline(std::cin, canal_value);
 				if (canal_value == "r" || canal_value == "g" || canal_value == "b") {
 					correct_canal = true;
 				}
 				else {
-					std::cout << "Niewlasciwa nazwa kanalu, podaj (r, g, b): \n";
-					std::cin >> canal_value;
+					std::cout << "Niewlasciwa nazwa kanalu, podaj (r / g / b): \n";
 				}
 			}
 			canal_ = (int)canal_value[0];
@@ -190,6 +198,7 @@ public:
 			std::string value;
 			bool correct_value2 = false;
 
+			//while not correct takes value of treshold
 			while (!correct_value2)
 			{
 				try {

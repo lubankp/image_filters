@@ -1,10 +1,13 @@
 
+//includes files
 #include "effect.h"
 
 class Inversion : public Effect {
+//child class
 
 public:
 	void makeEffect(Picture& e_image_) override {
+		//modifies image - invert colors
 
 		sf::Color white = sf::Color::White;
 		for (int x = 0; x < e_image_.getImage()->getSize().x; x++) {
@@ -21,5 +24,6 @@ public:
 			}
 		}
 	}
+	//destructor
 	~Inversion(){};
 };
