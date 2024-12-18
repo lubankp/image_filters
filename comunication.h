@@ -23,7 +23,7 @@ public:
 	std::string init() {
 		//starts comunication and return image name
 		
-		std::cout << "Wyberz obraz: \n";
+		std::cout << "Choose an image: \n";
 		std::cin >> imageName_;
 		return imageName_;
 	}
@@ -34,7 +34,7 @@ public:
 		Picture picture;
 
 		while (!picture.openPicture("./" + imageName)) {
-			std::cout << "Niewlasciwa nazwa pliku, podaj inna: \n";
+			std::cout << "Wrong image name, provide a different one: \n";
 			std::cin >> imageName;
 		}
 		return picture;
@@ -46,7 +46,7 @@ public:
 		
 		bool correct_oper = false;
 		std::vector<std::array<int,3>> operation_vec;
-		std::cout << "Wyberz operacje (1-inwersja, 2-biala_ramka, 3-tresholding_kanalu, 0-koniec wprowadzania): \n";
+		std::cout << "Choose an operation (1-inversion, 2-white frame, 3-cannal tresholding, 0-end of providing): \n";
 		std::cin.ignore();
 		
 		while (!correct_oper) {
@@ -87,13 +87,13 @@ public:
 					}
 					default:
 					{
-						std::cout << "Niewlasciwa nazwa operacji, podaj (1, 2, 3): \n";
+						std::cout << "Wrong operation name, provide (1 or 2 or 3): \n";
 					}
 				}
 			}
 			catch(std::invalid_argument e)
 			{
-				std::cout << "Niewlasciwa nazwa operacji, podaj (1, 2, 3): \n";
+				std::cout << "Wrong operation name, provide (1 or 2 or 3): \n";
 			}
 			
 		}
@@ -133,7 +133,7 @@ public:
 	void makeFrameComunication(Picture picture) {
 		//takes additional informations for frame operation
 
-		std::cout << "Podaj wartosc horyzontalna ramki: \n";
+		std::cout << "Provide horizontal value of frame: \n";
 		std::string horizontal;
 		bool correct_value = false;
 
@@ -147,15 +147,15 @@ public:
 					correct_value = true;
 				}
 				else {
-					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().x / 2 << ") :\n";
+					std::cout << "Provide numerical value in range (0 - " << picture.getImage()->getSize().x / 2 << ") :\n";
 				}
 			}
 			catch (std::invalid_argument e) {
-				std::cout << "Podaj wartosc liczbowa: \n";
+				std::cout << "Provide numerical value: \n";
 			}
 		}
 
-		std::cout << "Podaj wartosc wertykalna ramki: \n";
+		std::cout << "Provide vertical value of frame: \n";
 		std::string vertical;
 		bool correct_value1 = false;
 
@@ -169,11 +169,11 @@ public:
 					correct_value1 = true;
 				}
 				else {
-					std::cout << "Podaj wartosc liczbowa z zakresu (0 - " << picture.getImage()->getSize().y / 2 << ") :\n";
+					std::cout << "Provide numerical value in range (0 - " << picture.getImage()->getSize().y / 2 << ") :\n";
 				}
 			}
 			catch (std::invalid_argument e) {
-				std::cout << "Podaj wartosc liczbowa: \n";
+				std::cout << "Provide numerical value: \n";
 			}
 		}
 	}
@@ -181,7 +181,7 @@ public:
 	void makeTresholdComunication() {
 		//takes additional informations for treshold operation
 
-			std::cout << "Podaj kanal (r, g, b): \n";
+			std::cout << "Provide a cannal (r or g or b): \n";
 			std::string canal_value;
 			bool correct_canal = false;
 
@@ -192,11 +192,11 @@ public:
 					correct_canal = true;
 				}
 				else {
-					std::cout << "Niewlasciwa nazwa kanalu, podaj (r / g / b): \n";
+					std::cout << "Wrong cannal name, provide (r or g or b): \n";
 				}
 			}
 			canal_ = (int)canal_value[0];
-			std::cout << "Podaj wartosc tresholdu (0 - 255): \n";
+			std::cout << "Provide treshold value (0 - 255): \n";
 			std::string value;
 			bool correct_value2 = false;
 
@@ -210,11 +210,11 @@ public:
 						correct_value2 = true;
 					}
 					else {
-						std::cout << "Podaj wartosc liczbowa z zakresu (0 - 255) :\n";
+						std::cout << "Provide numerical value in range (0 - 255) :\n";
 					}
 				}
 				catch (std::invalid_argument e) {
-					std::cout << "Podaj wartosc liczbowa: \n";
+					std::cout << "Provide numerical value: \n";
 				}
 			}
 	}
